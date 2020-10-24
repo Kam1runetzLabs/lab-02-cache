@@ -1,0 +1,5 @@
+/home/w1ckedente/labs/lab-02-cache/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/w1ckedente/labs/lab-02-cache/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/w1ckedente/labs/lab-02-cache/cmake-build-debug/CMakeFiles/test.dir
+/home/w1ckedente/labs/lab-02-cache/cmake-build-debug/CMakeFiles/tests.dir
+/home/w1ckedente/labs/lab-02-cache/cmake-build-debug/CMakeFiles/cache.dir
