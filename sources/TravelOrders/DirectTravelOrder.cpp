@@ -12,3 +12,6 @@ std::size_t DirectTravelOrder::GetNextIndex() {
   currentBufferIndex += CacheLineSize;
   return tmp;
 }
+void DirectTravelOrder::SetDefaultIndex() {
+  currentBufferIndex = 0;
+}

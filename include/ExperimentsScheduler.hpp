@@ -33,11 +33,14 @@ class ExperimentsScheduler {
   void SetPrinter(ResultsPrinter *printer);
   void Print(std::ostream &out) const;
 
+  [[nodiscard]] bool IsValid() const;
+
  private:
   std::vector<Experiment::ExperimentResult> expResults;
   std::vector<Experiment> experiments;
   char *buffer;
   ResultsPrinter *resultsPrinter;
+  TravelOrder *travelOrder;
 };
 
 #endif  // CACHE_EXPERIMENTSSCHEDULER_HPP

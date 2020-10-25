@@ -5,12 +5,12 @@
 #include <config.hpp>
 #include <random>
 
-RandomTravelOrder::RandomTravelOrder(std::size_t bufferSize)
-    : TravelOrder("random", bufferSize) {
+RandomTravelOrder::RandomTravelOrder() : TravelOrder("random", 1) {
   std::random_device rd;
   randomizer = std::mt19937_64(rd());
 }
 
 std::size_t RandomTravelOrder::GetNextIndex() {
-  return ((randomizer() % currentBufferIndex) / CacheLineSize) * CacheLineSize;
+  return ((randomizer() % bufferSize) / CacheLineSize) * CacheLineSize ;
 }
+void RandomTravelOrder::SetDefaultIndex() { currentBufferIndex = 1; }

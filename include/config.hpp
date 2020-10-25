@@ -9,7 +9,7 @@
 
 const std::size_t CacheLineSize = 64;
 const std::size_t IterationsCount = 1000;
-constexpr auto MyL1dCacheSize = 64 * 1024;
-constexpr auto MyL3CacheSize = 3 * 1024 * 1024;
+const auto MyL1dCacheSize = 64 * 1024;
+const auto MyL3CacheSize = 3 * 1024 * 1024;
 
 #endif  // CACHE_CONFIG_H

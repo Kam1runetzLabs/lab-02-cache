@@ -11,7 +11,7 @@
 
 ExperimentsScheduler::ExperimentsScheduler(
     ExperimentsCreator *experimentsCreator)
-    : expResults(), resultsPrinter(nullptr) {
+    : expResults(), resultsPrinter(nullptr), travelOrder(nullptr) {
   if (!experimentsCreator)
     throw std::runtime_error("Experiments creator most be not null");
   experiments = experimentsCreator->CreateExperiments();
@@ -19,15 +19,19 @@ ExperimentsScheduler::ExperimentsScheduler(
   for (auto &exp : experiments) exp.SetBuffer(buffer);
   delete experimentsCreator;
 }
-ExperimentsScheduler::~ExperimentsScheduler() { delete buffer; }
+ExperimentsScheduler::~ExperimentsScheduler() {
+  delete buffer;
+  delete resultsPrinter;
+  delete travelOrder;
+}
 void ExperimentsScheduler::SetTravelOrder(TravelOrder *newOrder) {
+  delete travelOrder;
+  travelOrder = newOrder;
   for (auto &exp : experiments) exp.SetTravelOrder(newOrder);
+  expResults.clear();
 }
 std::string ExperimentsScheduler::CurrentTravelOrder() const {
-  if (experiments.empty())
-    throw std::runtime_error(
-        "No experiments in scheduler, no travel order seted");
-  return experiments.back().CurrentTravelOrder();
+  return travelOrder->TravelOrderName();
 }
 void ExperimentsScheduler::RunAllExperiments() {
   for (auto &exp : experiments) {
@@ -55,9 +59,13 @@ std::size_t ExperimentsScheduler::GetExperimentsCount() const {
   return experiments.size();
 }
 void ExperimentsScheduler::SetPrinter(ResultsPrinter *printer) {
+  delete resultsPrinter;
   resultsPrinter = printer;
 }
 void ExperimentsScheduler::Print(std::ostream &out) const {
   if (!resultsPrinter) throw std::runtime_error("Printer wasn't seted");
   resultsPrinter->Print(expResults, out);
+}
+bool ExperimentsScheduler::IsValid() const {
+  return buffer != nullptr && travelOrder != nullptr;
 }

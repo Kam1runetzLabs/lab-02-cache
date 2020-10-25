@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/DefaultExperimentsCreator.hpp
-Experiment.hpp
--
-ExperimentsCreator.hpp
--
-vector
--
-
-../include/DefaultPrinter.hpp
-Experiment.hpp
--
-ResultsPrinter.hpp
--
-vector
--
-ostream
--
-
 ../include/Experiment.hpp
 TravelOrders/TravelOrder.hpp
 -
@@ -70,18 +52,6 @@ utility
 
 ../include/config.hpp
 cctype
--
-
-/home/w1ckedente/labs/lab-02-cache/sources/DefaultExperimentsCreator.cpp
-DefaultExperimentsCreator.hpp
--
-Experiment.hpp
--
-vector
--
-
-/home/w1ckedente/labs/lab-02-cache/sources/DefaultPrinter.cpp
-DefaultPrinter.hpp
 -
 
 /home/w1ckedente/labs/lab-02-cache/sources/Experiment.cpp

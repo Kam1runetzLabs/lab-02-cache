@@ -10,9 +10,11 @@
 
 class RandomTravelOrder : public TravelOrder {
  public:
-  explicit RandomTravelOrder(std::size_t bufferSize);
+  explicit RandomTravelOrder();
+  ~RandomTravelOrder() override = default;
 
   std::size_t GetNextIndex() override;
+  void SetDefaultIndex() override;
  private:
   std::mt19937_64 randomizer;
 };

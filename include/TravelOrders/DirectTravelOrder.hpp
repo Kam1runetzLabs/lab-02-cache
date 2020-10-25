@@ -10,7 +10,9 @@
 class DirectTravelOrder : public TravelOrder {
  public:
   DirectTravelOrder();
+  ~DirectTravelOrder() override = default;
   std::size_t GetNextIndex() override;
+  void SetDefaultIndex() override;
 };
 
 #endif  // CACHE_DIRECTTRAVELORDER_HPP
