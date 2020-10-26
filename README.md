@@ -132,9 +132,11 @@ cache_size['3'] = 8 mb;
 
 ### Результаты
 
-Ниже представлен формат и пример отчета:
-
 ```yaml
+  IterationsCount = 1000
+  L1dCacheSize = 64Kb
+  L2CacheSize = 512Kb
+  L3CacheSize = 3Mb
   travel_variant: "direct"
 
   experiments:
