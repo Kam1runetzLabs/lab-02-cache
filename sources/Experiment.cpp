@@ -9,7 +9,6 @@
 #include <stdexcept>
 #include <utility>
 
-
 Experiment::Experiment(char *aBuffer, std::size_t aBufferSize)
     : buffer(aBuffer), bufferSize(aBufferSize), travelOrder(nullptr) {}
 
@@ -19,7 +18,7 @@ void Experiment::WarnUpCache() {
   for (std::size_t i = 0; i < bufferSize; ++i) {
     buffer[i] = randomizer();
   }
-  [[maybe_unused]] char k = 0;
+  [[maybe_unused]] char k;
   for (std::size_t i = 0; i < bufferSize; ++i) k = buffer[i];
 }
 
@@ -29,17 +28,6 @@ std::size_t Experiment::RunExperiment() {
   [[maybe_unused]] char k;
 
   std::size_t index{0};
-
-  // ---
-
-//  std::random_device rd;
-//  std::mt19937_64 randomizer(rd());
-//  for (std::size_t i = 0; i < bufferSize; ++i) {
-//    buffer[i] = randomizer();
-//  }
-//  for (std::size_t i = 0; i < bufferSize; ++i) k = buffer[i];
-
-  // ---
 
   for (std::size_t i = 0; i < IterationsCount; ++i) {
     for (std::size_t j = 0; j < bufferSize; j += CacheLineSize) {
