@@ -5,11 +5,13 @@
 
 #include <TravelOrders/TravelOrder.hpp>
 #include <config.hpp>
+#include <string>
 
 class Experiment {
  public:
   struct ExperimentResult {
-    ExperimentResult(std::size_t duration, std::size_t bufferSize, std::string travelOrder);
+    ExperimentResult(std::size_t duration, std::size_t bufferSize,
+                     std::string travelOrder);
     std::size_t Duration;
     std::size_t BufferSize;
     std::string TravelOrder;

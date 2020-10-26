@@ -4,13 +4,14 @@
 #define INCLUDE_RESULTSPRINTER_HPP_
 
 #include <Experiment.hpp>
-#include <vector>
 #include <ostream>
+#include <vector>
 
 class ResultsPrinter {
  public:
   virtual ~ResultsPrinter() = default;
-  virtual void Print(std::vector<Experiment::ExperimentResult>, std::ostream &out) = 0;
+  virtual void Print(std::vector<Experiment::ExperimentResult>,
+                     std::ostream &out) = 0;
 };
 
 #endif  // INCLUDE_RESULTSPRINTER_HPP_

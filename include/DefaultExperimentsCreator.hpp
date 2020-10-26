@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
 #ifndef INCLUDE_DEFAULTEXPERIMENTSCREATOR_HPP_
-#define INCLUD_DEFAULTEXPERIMENTSCREATOR_HPP_
+#define INCLUDE_DEFAULTEXPERIMENTSCREATOR_HPP_
 
 #include <Experiment.hpp>
 #include <ExperimentsCreator.hpp>

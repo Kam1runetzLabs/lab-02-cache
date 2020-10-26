@@ -19,7 +19,7 @@ class TravelOrder {
 
   virtual void SetDefaultIndex() = 0;
 
-  virtual void SetBufferSize(std::size_t buffSize) { bufferSize = buffSize; };
+  virtual void SetBufferSize(std::size_t buffSize) { bufferSize = buffSize; }
 
  protected:
   std::string travelOrderName;

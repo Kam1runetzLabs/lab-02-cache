@@ -8,7 +8,7 @@
 
 class RandomTravelOrder : public TravelOrder {
  public:
-  explicit RandomTravelOrder();
+   RandomTravelOrder();
   ~RandomTravelOrder() override = default;
 
   std::size_t GetNextIndex() override;
