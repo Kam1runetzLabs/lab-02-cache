@@ -137,6 +137,8 @@ cache_size['3'] = 8 mb;
   L1dCacheSize = 64Kb
   L2CacheSize = 512Kb
   L3CacheSize = 3Mb
+
+ivnestigation:
   travel_variant: "direct"
 
   experiments:
