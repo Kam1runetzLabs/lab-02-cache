@@ -28,6 +28,7 @@ TEST(ErrorHandling, NullTravelOrder) {
 TEST(ErrorHandling, NullPrinter) {
   ExperimentsScheduler scheduler(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
+  scheduler.SetTravelOrder(new DirectTravelOrder());
   scheduler.RunAllExperiments();
   EXPECT_THROW(scheduler.Print(std::cout), std::runtime_error);
 }
