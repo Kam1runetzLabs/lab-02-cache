@@ -12,7 +12,6 @@
 #include <config.hpp>
 #include <iostream>
 
-// todo: good exception "what"
 
 TEST(Example, EmptyTest) {
   ExperimentsScheduler scheduler(
@@ -32,12 +31,5 @@ TEST(Example, EmptyTest) {
   scheduler.RunAllExperiments();
   scheduler.Print(std::cout);
 
-  //  auto start = std::chrono::high_resolution_clock::now();
-  //  [[maybe_unused]] char k = 0;
-  //  auto stop = std::chrono::high_resolution_clock::now();
-  //  auto dur = stop - start;
-  //  std::cout <<
-  //  std::chrono::duration_cast<std::chrono::nanoseconds>(dur).count() <<
-  //  std::endl;
   EXPECT_TRUE(true);
 }

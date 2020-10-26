@@ -17,7 +17,7 @@
 
 class ExperimentsScheduler {
  public:
-  ExperimentsScheduler(ExperimentsCreator *experimentsCreator);
+  explicit ExperimentsScheduler(ExperimentsCreator *experimentsCreator);
   ~ExperimentsScheduler();
 
   void SetTravelOrder(TravelOrder *newOrder);

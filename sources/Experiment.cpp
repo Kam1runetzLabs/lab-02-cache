@@ -23,7 +23,9 @@ void Experiment::WarnUpCache() {
 }
 
 std::size_t Experiment::RunExperiment() {
-  if (!travelOrder) throw std::runtime_error("Travel order most be not null");
+  if (!travelOrder)
+    throw std::runtime_error(
+        "Didn't set travel order, experiment can't starting");
   std::size_t commonDuration{0};
   [[maybe_unused]] char k;
 

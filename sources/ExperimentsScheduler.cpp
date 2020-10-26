@@ -13,9 +13,12 @@ ExperimentsScheduler::ExperimentsScheduler(
     ExperimentsCreator *experimentsCreator)
     : expResults(), resultsPrinter(nullptr), travelOrder(nullptr) {
   if (!experimentsCreator)
-    throw std::runtime_error("Experiments creator most be not null");
+    throw std::runtime_error(
+        "Didn't set experiments creator, scheduler can't work");
   experiments = experimentsCreator->CreateExperiments();
   buffer = new char[experimentsCreator->GetMaxBufferSize()];
+  // buffer = (char *) _mm_alloc(experimentsCreator->GetMaxBufferSize(),
+  // CacheLineSize);
   for (auto &exp : experiments) exp.SetBuffer(buffer);
   delete experimentsCreator;
 }
@@ -63,7 +66,9 @@ void ExperimentsScheduler::SetPrinter(ResultsPrinter *printer) {
   resultsPrinter = printer;
 }
 void ExperimentsScheduler::Print(std::ostream &out) const {
-  if (!resultsPrinter) throw std::runtime_error("Printer wasn't seted");
+  if (!resultsPrinter)
+    throw std::runtime_error(
+        "Didn't set printer for printing experiment results");
   resultsPrinter->Print(expResults, out);
 }
 bool ExperimentsScheduler::IsValid() const {
