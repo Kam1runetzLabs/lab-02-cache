@@ -8,9 +8,8 @@
 
 class ExperimentsCreator {
  public:
-  ExperimentsCreator([[maybe_unused]] std::size_t aL1CacheSize,
-                     [[maybe_unused]] std::size_t aL2CacheSize,
-                     [[maybe_unused]] std::size_t aL3CacheSize)
+  ExperimentsCreator(std::size_t aL1CacheSize, std::size_t aL2CacheSize,
+                     std::size_t aL3CacheSize)
       : L1CacheSize(aL1CacheSize),
         L2CacheSize(aL2CacheSize),
         L3CacheSize(aL3CacheSize) {}
