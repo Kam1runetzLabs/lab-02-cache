@@ -135,24 +135,182 @@ cache_size['3'] = 8 mb;
 Ниже представлен формат и пример отчета:
 
 ```yaml
-investigation:                                       |  investigaion:
-  travel_variant: <вариант_прохода>                  |    travel_order: "direction"
-  experiments:                                       |    experiments:
-  - experiment:                                      |    - experiment:
-      number:                                        |        number: 1
-      input_data:                                    |        input_data:
-        buffer_size: <размер_буфера>                 |          buffer_size: "1mb"
-      results:                                       |        results:
-        duration: <продолжительность>                |          duration: "1ns"
-  - experiment:                                      |    - experiment:
-      number: <номер_эксперимента>                   |        number: 2
-      input_data:                                    |        input_data:
-        buffer_size: <размер_буфера>                 |          buffer_size: "2mb"
-      results:                                       |        results:
-        duration: <продолжительность>                |          duration: "2ns"
-                                                     |
-investigation:                                       |  investigation:
-...                                                  |  ...
-```
+  travel_variant: "direct"
 
-⚠️ В отчет также необходимо добавить общий график с результатами всех исследований. ⚠️
+  experiments:
+  - experiment:
+    number: 1
+    input_data:
+      buffer_size: "32Kb"
+    results:
+      duration: "35ns"
+
+  - experiment:
+    number: 2
+    input_data:
+      buffer_size: "64Kb"
+    results:
+      duration: "35ns"
+
+  - experiment:
+    number: 3
+    input_data:
+      buffer_size: "128Kb"
+    results:
+      duration: "37ns"
+
+  - experiment:
+    number: 4
+    input_data:
+      buffer_size: "256Kb"
+    results:
+      duration: "30ns"
+
+  - experiment:
+    number: 5
+    input_data:
+      buffer_size: "512Kb"
+    results:
+      duration: "30ns"
+
+  - experiment:
+    number: 6
+    input_data:
+      buffer_size: "1024Kb"
+    results:
+      duration: "30ns"
+
+  - experiment:
+    number: 7
+    input_data:
+      buffer_size: "2048Kb"
+    results:
+      duration: "30ns"
+
+  - experiment:
+    number: 8
+    input_data:
+      buffer_size: "4608Kb"
+    results:
+      duration: "31ns"
+
+investigation:
+  travel_variant: "reverse"
+
+  experiments:
+  - experiment:
+    number: 1
+    input_data:
+      buffer_size: "32Kb"
+    results:
+      duration: "28ns"
+
+  - experiment:
+    number: 2
+    input_data:
+      buffer_size: "64Kb"
+    results:
+      duration: "30ns"
+
+  - experiment:
+    number: 3
+    input_data:
+      buffer_size: "128Kb"
+    results:
+      duration: "30ns"
+
+  - experiment:
+    number: 4
+    input_data:
+      buffer_size: "256Kb"
+    results:
+      duration: "30ns"
+
+  - experiment:
+    number: 5
+    input_data:
+      buffer_size: "512Kb"
+    results:
+      duration: "31ns"
+
+  - experiment:
+    number: 6
+    input_data:
+      buffer_size: "1024Kb"
+    results:
+      duration: "31ns"
+
+  - experiment:
+    number: 7
+    input_data:
+      buffer_size: "2048Kb"
+    results:
+      duration: "31ns"
+
+  - experiment:
+    number: 8
+    input_data:
+      buffer_size: "4608Kb"
+    results:
+      duration: "32ns"
+
+investigation:
+  travel_variant: "random"
+
+  experiments:
+  - experiment:
+    number: 1
+    input_data:
+      buffer_size: "32Kb"
+    results:
+      duration: "81ns"
+
+  - experiment:
+    number: 2
+    input_data:
+      buffer_size: "64Kb"
+    results:
+      duration: "80ns"
+
+  - experiment:
+    number: 3
+    input_data:
+      buffer_size: "128Kb"
+    results:
+      duration: "80ns"
+
+  - experiment:
+    number: 4
+    input_data:
+      buffer_size: "256Kb"
+    results:
+      duration: "80ns"
+
+  - experiment:
+    number: 5
+    input_data:
+      buffer_size: "512Kb"
+    results:
+      duration: "81ns"
+
+  - experiment:
+    number: 6
+    input_data:
+      buffer_size: "1024Kb"
+    results:
+      duration: "79ns"
+
+  - experiment:
+    number: 7
+    input_data:
+      buffer_size: "2048Kb"
+    results:
+      duration: "80ns"
+
+  - experiment:
+    number: 8
+    input_data:
+      buffer_size: "4608Kb"
+    results:
+      duration: "80ns"
+```

@@ -10,26 +10,33 @@
 #include <TravelOrders/ReverseTravelOrder.hpp>
 #include <chrono>
 #include <config.hpp>
+#include <fstream>
 #include <iostream>
 
-
 TEST(Example, EmptyTest) {
+  std::ofstream out;
+  out.open("investigation_result.txt", std::ios::out);
+  if (!out.is_open()) {
+    FAIL() << "opening out file error" << std::endl;
+  }
   ExperimentsScheduler scheduler(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
   scheduler.SetTravelOrder(new DirectTravelOrder());
   scheduler.RunAllExperiments();
 
   scheduler.SetPrinter(new DefaultPrinter());
-  scheduler.Print(std::cout);
+  scheduler.Print(out);
 
   scheduler.SetTravelOrder(new ReverseTravelOrder());
   scheduler.RunAllExperiments();
 
-  scheduler.Print(std::cout);
+  scheduler.Print(out);
 
   scheduler.SetTravelOrder(new RandomTravelOrder());
   scheduler.RunAllExperiments();
-  scheduler.Print(std::cout);
+  scheduler.Print(out);
+
+  out.close();
 
   EXPECT_TRUE(true);
 }
