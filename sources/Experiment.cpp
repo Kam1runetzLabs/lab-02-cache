@@ -11,6 +11,8 @@ Experiment::Experiment(char *aBuffer, std::size_t aBufferSize)
     : buffer(aBuffer), bufferSize(aBufferSize), travelOrder(nullptr) {}
 
 void Experiment::WarnUpCache() {
+  if (!buffer)
+    throw std::runtime_error("Didn't set buffer, experiment can't starting");
   std::random_device rd;
   std::mt19937_64 randomizer(rd());
   for (std::size_t i = 0; i < bufferSize; ++i) {
@@ -24,6 +26,9 @@ std::size_t Experiment::RunExperiment() {
   if (!travelOrder)
     throw std::runtime_error(
         "Didn't set travel order, experiment can't starting");
+
+  if (!buffer)
+    throw std::runtime_error("Didn't set buffer, experiment can't starting");
   std::size_t commonDuration{0};
   [[maybe_unused]] char k;
 
