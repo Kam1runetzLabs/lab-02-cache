@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_DEFAULTEXPERIMENTSCREATOR_HPP
-#define CACHE_DEFAULTEXPERIMENTSCREATOR_HPP
+#ifndef CACHE_DEFAULTEXPERIMENTSCREATOR_HPP_
+#define CACHE_DEFAULTEXPERIMENTSCREATOR_HPP_
 
 #include <Experiment.hpp>
 #include <ExperimentsCreator.hpp>
@@ -13,8 +13,9 @@ class DefaultExperimentsCreator : public ExperimentsCreator {
   std::vector<Experiment> CreateExperiments() override;
 
   std::size_t GetMaxBufferSize() const override;
+
  private:
   std::size_t maxBufferSize;
 };
 
-#endif  // CACHE_DEFAULTEXPERIMENTSCREATOR_HPP
+#endif  // CACHE_DEFAULTEXPERIMENTSCREATOR_HPP_

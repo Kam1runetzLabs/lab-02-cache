@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_REVERSETRAVELORDER_HPP
-#define CACHE_REVERSETRAVELORDER_HPP
+#ifndef CACHE_REVERSETRAVELORDER_HPP_
+#define CACHE_REVERSETRAVELORDER_HPP_
 
 #include <TravelOrders/TravelOrder.hpp>
 
@@ -14,4 +14,4 @@ class ReverseTravelOrder : public TravelOrder {
   void SetBufferSize(std::size_t size) override;
 };
 
-#endif  // CACHE_REVERSETRAVELORDER_HPP
+#endif  // CACHE_REVERSETRAVELORDER_HPP_

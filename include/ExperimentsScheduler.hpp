@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_EXPERIMENTSSCHEDULER_HPP
-#define CACHE_EXPERIMENTSSCHEDULER_HPP
+#ifndef CACHE_EXPERIMENTSSCHEDULER_HPP_
+#define CACHE_EXPERIMENTSSCHEDULER_HPP_
 
 #include <Experiment.hpp>
 #include <ExperimentsCreator.hpp>
@@ -41,4 +41,4 @@ class ExperimentsScheduler {
   TravelOrder *travelOrder;
 };
 
-#endif  // CACHE_EXPERIMENTSSCHEDULER_HPP
+#endif  // CACHE_EXPERIMENTSSCHEDULER_HPP_

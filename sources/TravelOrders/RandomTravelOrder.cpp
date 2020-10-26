@@ -10,6 +10,6 @@ RandomTravelOrder::RandomTravelOrder() : TravelOrder("random", 1) {
 }
 
 std::size_t RandomTravelOrder::GetNextIndex() {
-  return ((randomizer() % bufferSize) / CacheLineSize) * CacheLineSize ;
+  return ((randomizer() % bufferSize) / CacheLineSize) * CacheLineSize;
 }
 void RandomTravelOrder::SetDefaultIndex() { currentBufferIndex = 1; }
