@@ -1,6 +1,5 @@
-//
-// Created by w1ckedente on 24.10.2020.
-//
+// Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
+
 #include <Experiment.hpp>
 #include <ExperimentsScheduler.hpp>
 #include <ResultsPrinter.hpp>

@@ -1,6 +1,5 @@
-//
-// Created by w1ckedente on 25.10.2020.
-//
+// Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
+
 #include <DefaultPrinter.hpp>
 
 void DefaultPrinter::Print(std::vector<Experiment::ExperimentResult> res,

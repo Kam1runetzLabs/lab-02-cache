@@ -1,6 +1,4 @@
-//
-// Created by w1ckedente on 24.10.2020.
-//
+// Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
 #ifndef CACHE_TRAVELORDER_HPP
 #define CACHE_TRAVELORDER_HPP

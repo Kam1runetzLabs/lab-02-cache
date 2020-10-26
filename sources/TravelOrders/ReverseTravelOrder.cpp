@@ -1,6 +1,4 @@
-//
-// Created by w1ckedente on 24.10.2020.
-//
+// Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
 #include <TravelOrders/ReverseTravelOrder.hpp>
 #include <config.hpp>
