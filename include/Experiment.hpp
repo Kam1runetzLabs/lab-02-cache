@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_EXPERIMENT_HPP_
-#define CACHE_EXPERIMENT_HPP_
+#ifndef INCLUDE_EXPERIMENT_HPP_
+#define INCLUDE_EXPERIMENT_HPP_
 
 #include <TravelOrders/TravelOrder.hpp>
 #include <config.hpp>
@@ -33,4 +33,4 @@ class Experiment {
   TravelOrder *travelOrder;
 };
 
-#endif  // CACHE_EXPERIMENT_HPP_
+#endif  // INCLUDE_EXPERIMENT_HPP_

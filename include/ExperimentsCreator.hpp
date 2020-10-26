@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_EXPERIMENTSCREATOR_HPP_
-#define CACHE_EXPERIMENTSCREATOR_HPP_
+#ifndef INCLUDE_EXPERIMENTSCREATOR_HPP_
+#define INCLUDE_EXPERIMENTSCREATOR_HPP_
 
 #include <Experiment.hpp>
 #include <vector>
@@ -23,4 +23,4 @@ class ExperimentsCreator {
   std::size_t L3CacheSize;
 };
 
-#endif  // CACHE_EXPERIMENTSCREATOR_HPP_
+#endif  // INCLUDE_EXPERIMENTSCREATOR_HPP_

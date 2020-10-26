@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_DEFAULTEXPERIMENTSCREATOR_HPP_
-#define CACHE_DEFAULTEXPERIMENTSCREATOR_HPP_
+#ifndef INCLUDE_DEFAULTEXPERIMENTSCREATOR_HPP_
+#define INCLUD_DEFAULTEXPERIMENTSCREATOR_HPP_
 
 #include <Experiment.hpp>
 #include <ExperimentsCreator.hpp>
@@ -18,4 +18,4 @@ class DefaultExperimentsCreator : public ExperimentsCreator {
   std::size_t maxBufferSize;
 };
 
-#endif  // CACHE_DEFAULTEXPERIMENTSCREATOR_HPP_
+#endif  // INCLUDE_DEFAULTEXPERIMENTSCREATOR_HPP_

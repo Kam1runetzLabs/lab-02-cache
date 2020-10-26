@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_CONFIG_H_
-#define CACHE_CONFIG_H_
+#ifndef INCLUDE_CONFIG_H_
+#define INCLUDE_CONFIG_H_
 
 #include <cctype>
 
@@ -11,4 +11,4 @@ const auto MyL1dCacheSize = 64 * 1024;
 const auto MyL3CacheSize = 3 * 1024 * 1024;
 [[maybe_unused]] const auto GCC_PrefetchEnable = true;
 
-#endif  // CACHE_CONFIG_H_
+#endif  // INCLUDE_CONFIG_H_

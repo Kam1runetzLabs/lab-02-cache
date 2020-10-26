@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_TRAVELORDER_HPP_
-#define CACHE_TRAVELORDER_HPP_
+#ifndef INCLUDE_TRAVELORDERS_TRAVELORDER_HPP_
+#define INCLUDE_TRAVELORDERS_TRAVELORDER_HPP_
 
 #include <string>
 #include <utility>
@@ -27,4 +27,4 @@ class TravelOrder {
   std::size_t bufferSize;
 };
 
-#endif  // CACHE_TRAVELORDER_HPP_
+#endif  // INCLUDE_TRAVELORDERS_TRAVELORDER_HPP_

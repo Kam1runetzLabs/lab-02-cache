@@ -1,7 +1,7 @@
 // Copyright 2020 <Shumeev Ilja (Kam1runetzLabs) notsoserious2017@gmail.com>
 
-#ifndef CACHE_DEFAULTPRINTER_HPP_
-#define CACHE_DEFAULTPRINTER_HPP_
+#ifndef INCLUDE_DEFAULTPRINTER_HPP_
+#define INCLUDE_DEFAULTPRINTER_HPP_
 
 #include <Experiment.hpp>
 #include <ResultsPrinter.hpp>
@@ -13,4 +13,4 @@ class DefaultPrinter : public ResultsPrinter {
              std::ostream &out) override;
 };
 
-#endif  // CACHE_DEFAULTPRINTER_HPP_
+#endif  // INCLUDE_DEFAULTPRINTER_HPP_
