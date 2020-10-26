@@ -69,6 +69,7 @@ TEST(ErrorHandling, ExperimentStartingWithoutTravelOrder) {
   Experiment experiment(someBuffer, someSize);
   experiment.WarnUpCache();
   EXPECT_THROW(experiment.RunExperiment(), std::runtime_error);
+  delete []someBuffer;
 }
 
 TEST(UseCases, DefaultExperiment) {
