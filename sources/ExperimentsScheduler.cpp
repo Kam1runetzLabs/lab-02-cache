@@ -22,7 +22,7 @@ ExperimentsScheduler::ExperimentsScheduler(
   delete experimentsCreator;
 }
 ExperimentsScheduler::~ExperimentsScheduler() {
-  delete buffer;
+  delete []buffer;
   delete resultsPrinter;
   delete travelOrder;
 }
