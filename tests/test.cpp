@@ -13,8 +13,6 @@
 #include <iostream>
 #include <stdexcept>
 
-TEST(Example, EmptyTest) { EXPECT_TRUE(true); }
-
 TEST(ErrorHandling, NullCreator) {
   EXPECT_THROW(ExperimentsScheduler scheduler(nullptr), std::runtime_error);
 }
@@ -69,7 +67,7 @@ TEST(ErrorHandling, ExperimentStartingWithoutTravelOrder) {
   Experiment experiment(someBuffer, someSize);
   experiment.WarnUpCache();
   EXPECT_THROW(experiment.RunExperiment(), std::runtime_error);
-  delete []someBuffer;
+  delete[] someBuffer;
 }
 
 TEST(UseCases, DefaultExperiment) {
@@ -132,4 +130,47 @@ TEST(UseCases, CheckSchedulerValidity) {
 
   scheduler.SetTravelOrder(new RandomTravelOrder());
   EXPECT_TRUE(scheduler.IsValid());
+}
+
+TEST(UseCases, MovingConstructor) {
+  ExperimentsScheduler scheduler(
+      new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
+  scheduler.SetTravelOrder(new DirectTravelOrder());
+  scheduler.SetPrinter(new DefaultPrinter());
+  scheduler.RunAllExperiments();
+  auto results = scheduler.GetResults();
+  auto expCount = scheduler.GetExperimentsCount();
+
+  ExperimentsScheduler movedSheduler(std::move(scheduler));
+
+  auto movedResults = movedSheduler.GetResults();
+  auto movedExpCount = movedSheduler.GetExperimentsCount();
+
+  EXPECT_EQ(expCount, movedExpCount);
+
+  for (std::size_t i = 0; i < expCount; ++i)
+    if (results[i] != movedResults[i]) FAIL();
+  SUCCEED();
+}
+
+TEST(UseCases, MovingOperator) {
+  ExperimentsScheduler scheduler(
+      new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
+
+  scheduler.SetTravelOrder(new DirectTravelOrder());
+  scheduler.SetPrinter(new DefaultPrinter());
+  scheduler.RunAllExperiments();
+  auto results = scheduler.GetResults();
+  auto expCount = scheduler.GetExperimentsCount();
+
+  auto movedScheduler = std::move(scheduler);
+
+  auto movedResults = movedScheduler.GetResults();
+  auto movedExpCount = movedScheduler.GetExperimentsCount();
+
+  EXPECT_EQ(expCount, movedExpCount);
+
+  for (std::size_t i = 0; i < expCount; ++i)
+    if (results[i] != movedResults[i]) FAIL();
+  SUCCEED();
 }

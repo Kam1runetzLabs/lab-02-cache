@@ -10,19 +10,20 @@
 
 ExperimentsScheduler::ExperimentsScheduler(
     ExperimentsCreator *experimentsCreator)
-    : expResults(), resultsPrinter(nullptr), travelOrder(nullptr) {
+    : expResults(),
+      buffer(nullptr),
+      resultsPrinter(nullptr),
+      travelOrder(nullptr) {
   if (!experimentsCreator)
     throw std::runtime_error(
         "Didn't set experiments creator, scheduler can't work");
   experiments = experimentsCreator->CreateExperiments();
   buffer = new char[experimentsCreator->GetMaxBufferSize()];
-  // buffer = (char *) _mm_alloc(experimentsCreator->GetMaxBufferSize(),
-  // CacheLineSize);
   for (auto &exp : experiments) exp.SetBuffer(buffer);
   delete experimentsCreator;
 }
 ExperimentsScheduler::~ExperimentsScheduler() {
-  delete []buffer;
+  delete[] buffer;
   delete resultsPrinter;
   delete travelOrder;
 }
@@ -39,8 +40,8 @@ void ExperimentsScheduler::RunAllExperiments() {
   for (auto &exp : experiments) {
     exp.WarnUpCache();
     std::size_t duration = exp.RunExperiment();
-    expResults.emplace_back(Experiment::ExperimentResult(
-        duration, exp.GetBufferSize(), exp.CurrentTravelOrder()));
+    expResults.emplace_back(duration, exp.GetBufferSize(),
+                            exp.CurrentTravelOrder());
   }
 }
 Experiment::ExperimentResult ExperimentsScheduler::RunExperiment(
@@ -73,3 +74,41 @@ void ExperimentsScheduler::Print(std::ostream &out) const {
 bool ExperimentsScheduler::IsValid() const {
   return buffer != nullptr && travelOrder != nullptr;
 }
+ExperimentsScheduler::ExperimentsScheduler(
+    ExperimentsScheduler &&other) noexcept
+    : expResults(std::move(other.expResults)),
+      experiments(std::move(other.experiments)),
+      buffer(other.buffer),
+      resultsPrinter(other.resultsPrinter),
+      travelOrder(other.travelOrder) {
+  other.travelOrder = nullptr;
+  other.buffer = nullptr;
+  other.resultsPrinter = nullptr;
+}
+
+ExperimentsScheduler &ExperimentsScheduler::operator=(
+    ExperimentsScheduler &&other) noexcept {
+  if (&other == this) return *this;
+  delete[] buffer;
+  delete travelOrder;
+  delete resultsPrinter;
+
+  buffer = other.buffer;
+  travelOrder = other.travelOrder;
+  resultsPrinter = other.resultsPrinter;
+
+  experiments = std::move(other.experiments);
+  expResults = std::move(other.expResults);
+
+  other.resultsPrinter = nullptr;
+  other.travelOrder = nullptr;
+  other.buffer = nullptr;
+
+  return *this;
+}
+ExperimentsScheduler::ExperimentsScheduler()
+    : expResults(),
+      experiments(),
+      buffer(nullptr),
+      resultsPrinter(nullptr),
+      travelOrder(nullptr) {}

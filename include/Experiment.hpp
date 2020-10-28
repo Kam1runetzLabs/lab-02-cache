@@ -15,6 +15,11 @@ class Experiment {
     std::size_t Duration;
     std::size_t BufferSize;
     std::string TravelOrder;
+
+    friend bool operator==(const ExperimentResult &left,
+                           const ExperimentResult &right);
+    friend bool operator!=(const ExperimentResult &left,
+                           const ExperimentResult &right);
   };
   Experiment(char *buffer, std::size_t bufferSize);
   ~Experiment() = default;

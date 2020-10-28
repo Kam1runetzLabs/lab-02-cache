@@ -5,18 +5,24 @@
 
 #include <Experiment.hpp>
 #include <ExperimentsCreator.hpp>
-#include <TravelOrders/TravelOrder.hpp>
 #include <ResultsPrinter.hpp>
+#include <TravelOrders/TravelOrder.hpp>
 #include <config.hpp>
+#include <ostream>
 #include <string>
 #include <vector>
-#include <ostream>
-
 
 class ExperimentsScheduler {
  public:
+  ExperimentsScheduler();
   explicit ExperimentsScheduler(ExperimentsCreator *experimentsCreator);
+  ExperimentsScheduler(const ExperimentsScheduler &) = delete;
+  ExperimentsScheduler(ExperimentsScheduler &&other) noexcept;
   ~ExperimentsScheduler();
+
+  void operator=(const ExperimentsScheduler &) = delete;
+
+  ExperimentsScheduler &operator=(ExperimentsScheduler &&other) noexcept;
 
   void SetTravelOrder(TravelOrder *newOrder);
   std::string CurrentTravelOrder() const;

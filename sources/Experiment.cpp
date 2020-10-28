@@ -69,3 +69,14 @@ Experiment::ExperimentResult::ExperimentResult(std::size_t duration,
     : Duration(duration),
       BufferSize(bufferSize),
       TravelOrder(std::move(travelOrder)) {}
+bool operator==(const Experiment::ExperimentResult &left,
+                const Experiment::ExperimentResult &right) {
+  if (left.BufferSize == right.BufferSize && left.Duration == right.Duration &&
+      left.TravelOrder == right.TravelOrder)
+    return true;
+  return false;
+}
+bool operator!=(const Experiment::ExperimentResult &left,
+                const Experiment::ExperimentResult &right) {
+  return !(left == right);
+}

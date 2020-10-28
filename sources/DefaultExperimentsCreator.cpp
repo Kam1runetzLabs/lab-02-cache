@@ -11,8 +11,8 @@ DefaultExperimentsCreator::DefaultExperimentsCreator(std::size_t minCacheSize,
 std::vector<Experiment> DefaultExperimentsCreator::CreateExperiments() {
   std::vector<Experiment> result;
   for (auto i = L1CacheSize / 2; i < L3CacheSize; i *= 2)
-    result.emplace_back(Experiment(nullptr, i));
-  result.emplace_back(Experiment(nullptr, L3CacheSize / 2 * 3));
+    result.emplace_back(nullptr, i);
+  result.emplace_back(nullptr, L3CacheSize / 2 * 3);
   maxBufferSize = L3CacheSize / 2 * 3;
   return result;
 }
