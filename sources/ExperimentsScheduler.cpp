@@ -112,3 +112,15 @@ ExperimentsScheduler::ExperimentsScheduler()
       buffer(nullptr),
       resultsPrinter(nullptr),
       travelOrder(nullptr) {}
+void ExperimentsScheduler::CreateExperiments(
+    ExperimentsCreator *experimentsCreator) {
+  if (!experimentsCreator)
+    throw std::runtime_error(
+        "Experiments creator most be non-null, scheduler can't work");
+  experiments.clear();
+  expResults.clear();
+  delete[] buffer;
+
+  experiments = experimentsCreator->CreateExperiments();
+  buffer = new char[experimentsCreator->GetMaxBufferSize()];
+}

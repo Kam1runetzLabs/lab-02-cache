@@ -24,6 +24,8 @@ class ExperimentsScheduler {
 
   ExperimentsScheduler &operator=(ExperimentsScheduler &&other) noexcept;
 
+  void CreateExperiments(ExperimentsCreator *experimentsCreator);
+
   void SetTravelOrder(TravelOrder *newOrder);
   std::string CurrentTravelOrder() const;
 

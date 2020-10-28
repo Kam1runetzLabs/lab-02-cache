@@ -13,8 +13,13 @@
 #include <iostream>
 #include <stdexcept>
 
-TEST(ErrorHandling, NullCreator) {
+TEST(ErrorHandling, NullCreatorForCoustructor) {
   EXPECT_THROW(ExperimentsScheduler scheduler(nullptr), std::runtime_error);
+}
+
+TEST(ErrorHandling, NullCreatorForCreateExperimentsMethod) {
+  ExperimentsScheduler scheduler;
+  EXPECT_THROW(scheduler.CreateExperiments(nullptr), std::runtime_error);
 }
 
 TEST(ErrorHandling, NullTravelOrder) {
@@ -173,4 +178,13 @@ TEST(UseCases, MovingOperator) {
   for (std::size_t i = 0; i < expCount; ++i)
     if (results[i] != movedResults[i]) FAIL();
   SUCCEED();
+}
+TEST(UseCases, CreatingSchedulerFromEmpyState) {
+  ExperimentsScheduler scheduler;
+  EXPECT_FALSE(scheduler.IsValid());
+  scheduler.CreateExperiments(
+      new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
+  scheduler.SetTravelOrder(new ReverseTravelOrder());
+  scheduler.SetPrinter(new DefaultPrinter());
+  EXPECT_TRUE(scheduler.IsValid());
 }
