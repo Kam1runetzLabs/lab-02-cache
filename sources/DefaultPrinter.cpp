@@ -2,7 +2,7 @@
 
 #include <DefaultPrinter.hpp>
 
-void DefaultPrinter::Print(std::vector<Experiment::ExperimentResult> res,
+void DefaultPrinter::Print(const std::vector<Experiment::ExperimentResult>& res,
                            std::ostream& out) {
   if (res.empty()) {
     out << "No experiments results" << std::endl;

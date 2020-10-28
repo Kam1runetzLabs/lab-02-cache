@@ -10,7 +10,7 @@
 class ResultsPrinter {
  public:
   virtual ~ResultsPrinter() = default;
-  virtual void Print(std::vector<Experiment::ExperimentResult>,
+  virtual void Print(const std::vector<Experiment::ExperimentResult> &,
                      std::ostream &out) = 0;
 };
 

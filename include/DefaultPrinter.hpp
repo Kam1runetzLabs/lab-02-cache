@@ -9,7 +9,7 @@
 #include <vector>
 
 class DefaultPrinter : public ResultsPrinter {
-  void Print(std::vector<Experiment::ExperimentResult>,
+  void Print(const std::vector<Experiment::ExperimentResult> &,
              std::ostream &out) override;
 };
 
