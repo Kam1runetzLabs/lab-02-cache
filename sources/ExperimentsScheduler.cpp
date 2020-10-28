@@ -123,5 +123,5 @@ void ExperimentsScheduler::CreateExperiments(
 
   experiments = experimentsCreator->CreateExperiments();
   buffer = new char[experimentsCreator->GetMaxBufferSize()];
-  delete[] experimentsCreator;
+  delete experimentsCreator;
 }
