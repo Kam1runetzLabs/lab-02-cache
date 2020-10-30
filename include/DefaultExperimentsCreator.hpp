@@ -10,7 +10,7 @@
 class DefaultExperimentsCreator : public ExperimentsCreator {
  public:
   DefaultExperimentsCreator(std::size_t minCacheSize, std::size_t maxCacheSize);
-  std::vector<Experiment> CreateExperiments() override;
+  std::vector<Experiment> CreateExperiments(char *buffer) override;
 
   std::size_t GetMaxBufferSize() const override;
 

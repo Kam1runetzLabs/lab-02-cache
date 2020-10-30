@@ -4,6 +4,7 @@
 #include <ExperimentsScheduler.hpp>
 #include <ResultsPrinter.hpp>
 #include <TravelOrders/TravelOrder.hpp>
+#include <random>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -17,9 +18,16 @@ ExperimentsScheduler::ExperimentsScheduler(
   if (!experimentsCreator)
     throw std::runtime_error(
         "Didn't set experiments creator, scheduler can't work");
-  experiments = experimentsCreator->CreateExperiments();
-  buffer = new char[experimentsCreator->GetMaxBufferSize()];
-  for (auto &exp : experiments) exp.SetBuffer(buffer);
+
+  auto bufferSize = experimentsCreator->GetMaxBufferSize();
+  buffer = new char[bufferSize];
+
+  std::random_device rd;
+  std::mt19937 randomizer(rd());
+  for (std::size_t i = 0; i < bufferSize; ++i) buffer[i] = randomizer();
+
+  experiments = experimentsCreator->CreateExperiments(buffer);
+
   delete experimentsCreator;
 }
 ExperimentsScheduler::~ExperimentsScheduler() {
@@ -117,11 +125,9 @@ void ExperimentsScheduler::CreateExperiments(
   if (!experimentsCreator)
     throw std::runtime_error(
         "Experiments creator most be non-null, scheduler can't work");
-  experiments.clear();
-  expResults.clear();
   delete[] buffer;
 
-  experiments = experimentsCreator->CreateExperiments();
   buffer = new char[experimentsCreator->GetMaxBufferSize()];
+  experiments = experimentsCreator->CreateExperiments(buffer);
   delete experimentsCreator;
 }

@@ -14,7 +14,7 @@ class ExperimentsCreator {
         L2CacheSize(aL2CacheSize),
         L3CacheSize(aL3CacheSize) {}
   virtual ~ExperimentsCreator() = default;
-  virtual std::vector<Experiment> CreateExperiments() = 0;
+  virtual std::vector<Experiment> CreateExperiments(char *buffer) = 0;
   virtual std::size_t GetMaxBufferSize() const = 0;
 
  protected:

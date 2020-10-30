@@ -24,8 +24,6 @@ class Experiment {
   Experiment(char *buffer, std::size_t bufferSize);
   ~Experiment() = default;
 
-  void SetBuffer(char *buffer);
-
   void SetTravelOrder(TravelOrder *newOrder);
   std::string CurrentTravelOrder() const;
 

@@ -5,15 +5,16 @@
 #include <vector>
 
 DefaultExperimentsCreator::DefaultExperimentsCreator(std::size_t minCacheSize,
-                                                       std::size_t maxCacheSize)
-    : ExperimentsCreator(minCacheSize, 0, maxCacheSize), maxBufferSize() {}
+                                                     std::size_t maxCacheSize)
+    : ExperimentsCreator(minCacheSize, 0, maxCacheSize),
+      maxBufferSize(L3CacheSize / 2 * 3) {}
 
-std::vector<Experiment> DefaultExperimentsCreator::CreateExperiments() {
+std::vector<Experiment> DefaultExperimentsCreator::CreateExperiments(
+    char *buffer) {
   std::vector<Experiment> result;
   for (auto i = L1CacheSize / 2; i < L3CacheSize; i *= 2)
-    result.emplace_back(nullptr, i);
-  result.emplace_back(nullptr, L3CacheSize / 2 * 3);
-  maxBufferSize = L3CacheSize / 2 * 3;
+    result.emplace_back(buffer, i);
+  result.emplace_back(buffer, L3CacheSize / 2 * 3);
   return result;
 }
 std::size_t DefaultExperimentsCreator::GetMaxBufferSize() const {

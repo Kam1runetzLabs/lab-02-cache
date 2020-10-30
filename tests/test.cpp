@@ -43,22 +43,6 @@ TEST(ErrorHandling, RunNonExistingExperiment) {
   EXPECT_THROW(scheduler.RunExperiment(count + 10), std::runtime_error);
 }
 
-TEST(ErrorHandling, SetingExperimentNullBuffer) {
-  std::size_t someSize = 100;
-  Experiment experiment(nullptr, someSize);
-  EXPECT_THROW(experiment.SetBuffer(nullptr), std::runtime_error);
-}
-
-TEST(ErrorHandling, ExperimentRewritingExistingBuffer) {
-  std::size_t someSize = 100;
-  char *someBuffer = new char[someSize];
-  char *otherBuffer = new char[someSize];
-  Experiment experiment(someBuffer, someSize);
-  EXPECT_THROW(experiment.SetBuffer(otherBuffer), std::runtime_error);
-  delete[] someBuffer;
-  delete[] otherBuffer;
-}
-
 TEST(ErrorHandling, ExperimentStartingWithoutBuffer) {
   std::size_t someSize = 100;
   Experiment experiment(nullptr, someSize);

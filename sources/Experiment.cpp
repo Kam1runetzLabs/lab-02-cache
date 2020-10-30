@@ -13,11 +13,6 @@ Experiment::Experiment(char *aBuffer, std::size_t aBufferSize)
 void Experiment::WarnUpCache() {
   if (!buffer)
     throw std::runtime_error("Didn't set buffer, experiment can't starting");
-  std::random_device rd;
-  std::mt19937_64 randomizer(rd());
-  for (std::size_t i = 0; i < bufferSize; ++i) {
-    buffer[i] = randomizer();
-  }
   [[maybe_unused]] char k;
   for (std::size_t i = 0; i < bufferSize; ++i) k = buffer[i];
 }
@@ -57,12 +52,9 @@ std::string Experiment::CurrentTravelOrder() const {
   if (travelOrder) return travelOrder->TravelOrderName();
   return std::string();
 }
+
 std::size_t Experiment::GetBufferSize() const { return bufferSize; }
-void Experiment::SetBuffer(char *aBuffer) {
-  if (!aBuffer) throw std::runtime_error("Buffer most be not null");
-  if (buffer) throw std::runtime_error("Buffer already exist");
-  buffer = aBuffer;
-}
+
 Experiment::ExperimentResult::ExperimentResult(std::size_t duration,
                                                std::size_t bufferSize,
                                                std::string travelOrder)
