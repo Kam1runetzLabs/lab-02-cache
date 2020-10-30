@@ -48,9 +48,6 @@ class ExperimentsScheduler {
   std::unique_ptr<char[]> buffer;
   std::unique_ptr<ResultsPrinter> resultsPrinter;
   std::unique_ptr<TravelOrder> travelOrder;
-  //  char *buffer;
-  //  ResultsPrinter *resultsPrinter;
-  //  TravelOrder *travelOrder;
 };
 
 #endif  // INCLUDE_EXPERIMENTSSCHEDULER_HPP_
