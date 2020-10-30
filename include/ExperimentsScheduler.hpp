@@ -8,6 +8,7 @@
 #include <ResultsPrinter.hpp>
 #include <TravelOrders/TravelOrder.hpp>
 #include <config.hpp>
+#include <memory>
 #include <ostream>
 #include <string>
 #include <vector>
@@ -44,9 +45,12 @@ class ExperimentsScheduler {
  private:
   std::vector<Experiment::ExperimentResult> expResults;
   std::vector<Experiment> experiments;
-  char *buffer;
-  ResultsPrinter *resultsPrinter;
-  TravelOrder *travelOrder;
+  std::unique_ptr<char[]> buffer;
+  std::unique_ptr<ResultsPrinter> resultsPrinter;
+  std::unique_ptr<TravelOrder> travelOrder;
+  //  char *buffer;
+  //  ResultsPrinter *resultsPrinter;
+  //  TravelOrder *travelOrder;
 };
 
 #endif  // INCLUDE_EXPERIMENTSSCHEDULER_HPP_

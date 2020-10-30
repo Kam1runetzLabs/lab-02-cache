@@ -20,30 +20,29 @@ ExperimentsScheduler::ExperimentsScheduler(
         "Didn't set experiments creator, scheduler can't work");
 
   auto bufferSize = experimentsCreator->GetMaxBufferSize();
-  buffer = new char[bufferSize];
+  buffer = std::make_unique<char[]>(bufferSize);
 
   std::random_device rd;
   std::mt19937 randomizer(rd());
   for (std::size_t i = 0; i < bufferSize; ++i) buffer[i] = randomizer();
 
-  experiments = experimentsCreator->CreateExperiments(buffer);
+  experiments = experimentsCreator->CreateExperiments(buffer.get());
 
   delete experimentsCreator;
 }
-ExperimentsScheduler::~ExperimentsScheduler() {
-  delete[] buffer;
-  delete resultsPrinter;
-  delete travelOrder;
-}
+
+ExperimentsScheduler::~ExperimentsScheduler() = default;
+
 void ExperimentsScheduler::SetTravelOrder(TravelOrder *newOrder) {
-  delete travelOrder;
-  travelOrder = newOrder;
+  travelOrder.reset(newOrder);
   for (auto &exp : experiments) exp.SetTravelOrder(newOrder);
   expResults.clear();
 }
+
 std::string ExperimentsScheduler::CurrentTravelOrder() const {
   return travelOrder->TravelOrderName();
 }
+
 void ExperimentsScheduler::RunAllExperiments() {
   for (auto &exp : experiments) {
     exp.WarnUpCache();
@@ -52,6 +51,7 @@ void ExperimentsScheduler::RunAllExperiments() {
                             exp.CurrentTravelOrder());
   }
 }
+
 Experiment::ExperimentResult ExperimentsScheduler::RunExperiment(
     std::size_t index) {
   if (index >= experiments.size())
@@ -62,55 +62,49 @@ Experiment::ExperimentResult ExperimentsScheduler::RunExperiment(
                                       experiments[index].GetBufferSize(),
                                       experiments[index].CurrentTravelOrder());
 }
+
 std::vector<Experiment::ExperimentResult> ExperimentsScheduler::GetResults()
     const {
   return expResults;
 }
+
 std::size_t ExperimentsScheduler::GetExperimentsCount() const {
   return experiments.size();
 }
+
 void ExperimentsScheduler::SetPrinter(ResultsPrinter *printer) {
-  delete resultsPrinter;
-  resultsPrinter = printer;
+  resultsPrinter.reset(printer);
 }
+
 void ExperimentsScheduler::Print(std::ostream &out) const {
   if (!resultsPrinter)
     throw std::runtime_error(
         "Didn't set printer for printing experiment results");
   resultsPrinter->Print(expResults, out);
 }
+
 bool ExperimentsScheduler::IsValid() const {
   return buffer != nullptr && travelOrder != nullptr;
 }
+
 ExperimentsScheduler::ExperimentsScheduler(
     ExperimentsScheduler &&other) noexcept
     : expResults(std::move(other.expResults)),
       experiments(std::move(other.experiments)),
-      buffer(other.buffer),
-      resultsPrinter(other.resultsPrinter),
-      travelOrder(other.travelOrder) {
-  other.travelOrder = nullptr;
-  other.buffer = nullptr;
-  other.resultsPrinter = nullptr;
-}
+      buffer(std::move(other.buffer)),
+      resultsPrinter(std::move(other.resultsPrinter)),
+      travelOrder(std::move(other.travelOrder)) {}
 
 ExperimentsScheduler &ExperimentsScheduler::operator=(
     ExperimentsScheduler &&other) noexcept {
   if (&other == this) return *this;
-  delete[] buffer;
-  delete travelOrder;
-  delete resultsPrinter;
 
-  buffer = other.buffer;
-  travelOrder = other.travelOrder;
-  resultsPrinter = other.resultsPrinter;
+  buffer = std::move(other.buffer);
+  travelOrder = std::move(other.travelOrder);
+  resultsPrinter = std::move(other.resultsPrinter);
 
   experiments = std::move(other.experiments);
   expResults = std::move(other.expResults);
-
-  other.resultsPrinter = nullptr;
-  other.travelOrder = nullptr;
-  other.buffer = nullptr;
 
   return *this;
 }
@@ -125,9 +119,9 @@ void ExperimentsScheduler::CreateExperiments(
   if (!experimentsCreator)
     throw std::runtime_error(
         "Experiments creator most be non-null, scheduler can't work");
-  delete[] buffer;
 
-  buffer = new char[experimentsCreator->GetMaxBufferSize()];
-  experiments = experimentsCreator->CreateExperiments(buffer);
+  auto bufferSize = experimentsCreator->GetMaxBufferSize();
+  buffer = std::make_unique<char[]>(bufferSize);
+  experiments = experimentsCreator->CreateExperiments(buffer.get());
   delete experimentsCreator;
 }
