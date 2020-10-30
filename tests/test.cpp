@@ -11,6 +11,7 @@
 #include <TravelOrders/ReverseTravelOrder.hpp>
 #include <config.hpp>
 #include <iostream>
+#include <memory>
 #include <stdexcept>
 
 TEST(ErrorHandling, NullCreatorForCoustructor) {
@@ -31,7 +32,7 @@ TEST(ErrorHandling, NullTravelOrder) {
 TEST(ErrorHandling, NullPrinter) {
   ExperimentsScheduler scheduler(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
-  scheduler.SetTravelOrder(new DirectTravelOrder());
+  scheduler.SetTravelOrder(new DirectTravelOrder);
   scheduler.RunAllExperiments();
   EXPECT_THROW(scheduler.Print(std::cout), std::runtime_error);
 }
@@ -52,26 +53,25 @@ TEST(ErrorHandling, ExperimentStartingWithoutBuffer) {
 
 TEST(ErrorHandling, ExperimentStartingWithoutTravelOrder) {
   std::size_t someSize = 100;
-  char *someBuffer = new char[someSize];
-  Experiment experiment(someBuffer, someSize);
+  auto someBuffer = std::make_unique<char[]>(someSize);
+  Experiment experiment(someBuffer.get(), someSize);
   experiment.WarnUpCache();
   EXPECT_THROW(experiment.RunExperiment(), std::runtime_error);
-  delete[] someBuffer;
 }
 
 TEST(UseCases, DefaultExperiment) {
   ExperimentsScheduler scheduler(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
-  scheduler.SetPrinter(new DefaultPrinter());
-  scheduler.SetTravelOrder(new DirectTravelOrder());
+  scheduler.SetPrinter(new DefaultPrinter);
+  scheduler.SetTravelOrder(new DirectTravelOrder);
   scheduler.RunAllExperiments();
   scheduler.Print(std::cout);
 
-  scheduler.SetTravelOrder(new ReverseTravelOrder());
+  scheduler.SetTravelOrder(new ReverseTravelOrder);
   scheduler.RunAllExperiments();
   scheduler.Print(std::cout);
 
-  scheduler.SetTravelOrder(new RandomTravelOrder());
+  scheduler.SetTravelOrder(new RandomTravelOrder);
   scheduler.RunAllExperiments();
   scheduler.Print(std::cout);
   SUCCEED();
@@ -80,7 +80,7 @@ TEST(UseCases, DefaultExperiment) {
 TEST(UseCases, SingleExperiment) {
   ExperimentsScheduler scheduler(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
-  scheduler.SetTravelOrder(new DirectTravelOrder());
+  scheduler.SetTravelOrder(new DirectTravelOrder);
 
   if (scheduler.GetExperimentsCount() != 0) {
     Experiment::ExperimentResult result = scheduler.RunExperiment(0);
@@ -98,7 +98,7 @@ TEST(UseCases, SingleExperiment) {
 TEST(UseCases, ResultProcessingWithoutPrinting) {
   ExperimentsScheduler scheduler(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
-  scheduler.SetTravelOrder(new ReverseTravelOrder());
+  scheduler.SetTravelOrder(new ReverseTravelOrder);
 
   scheduler.RunAllExperiments();
   std::vector<Experiment::ExperimentResult> results = scheduler.GetResults();
@@ -117,28 +117,30 @@ TEST(UseCases, CheckSchedulerValidity) {
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
   EXPECT_FALSE(scheduler.IsValid());
 
-  scheduler.SetTravelOrder(new RandomTravelOrder());
+  scheduler.SetTravelOrder(new RandomTravelOrder);
   EXPECT_TRUE(scheduler.IsValid());
 }
 
 TEST(UseCases, MovingConstructor) {
   ExperimentsScheduler scheduler(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
-  scheduler.SetTravelOrder(new DirectTravelOrder());
-  scheduler.SetPrinter(new DefaultPrinter());
+  scheduler.SetTravelOrder(new DirectTravelOrder);
+  scheduler.SetPrinter(new DefaultPrinter);
   scheduler.RunAllExperiments();
   auto results = scheduler.GetResults();
   auto expCount = scheduler.GetExperimentsCount();
 
-  ExperimentsScheduler movedSheduler(std::move(scheduler));
+  ExperimentsScheduler movedScheduler(std::move(scheduler));
 
-  auto movedResults = movedSheduler.GetResults();
-  auto movedExpCount = movedSheduler.GetExperimentsCount();
+  auto movedResults = movedScheduler.GetResults();
+  auto movedExpCount = movedScheduler.GetExperimentsCount();
 
   EXPECT_EQ(expCount, movedExpCount);
 
   for (std::size_t i = 0; i < expCount; ++i)
-    if (results[i] != movedResults[i]) FAIL();
+    if (results[i] != movedResults[i]) {
+      FAIL() << "results don't matching";
+    }
   SUCCEED();
 }
 
@@ -146,9 +148,10 @@ TEST(UseCases, MovingOperator) {
   ExperimentsScheduler scheduler(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
 
-  scheduler.SetTravelOrder(new DirectTravelOrder());
-  scheduler.SetPrinter(new DefaultPrinter());
+  scheduler.SetTravelOrder(new DirectTravelOrder);
+  scheduler.SetPrinter(new DefaultPrinter);
   scheduler.RunAllExperiments();
+
   auto results = scheduler.GetResults();
   auto expCount = scheduler.GetExperimentsCount();
 
@@ -160,7 +163,9 @@ TEST(UseCases, MovingOperator) {
   EXPECT_EQ(expCount, movedExpCount);
 
   for (std::size_t i = 0; i < expCount; ++i)
-    if (results[i] != movedResults[i]) FAIL();
+    if (results[i] != movedResults[i]) {
+      FAIL() << "results don't matching";
+    }
   SUCCEED();
 }
 
@@ -169,7 +174,7 @@ TEST(UseCases, CreatingSchedulerFromEmpyState) {
   EXPECT_FALSE(scheduler.IsValid());
   scheduler.CreateExperiments(
       new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
-  scheduler.SetTravelOrder(new ReverseTravelOrder());
-  scheduler.SetPrinter(new DefaultPrinter());
+  scheduler.SetTravelOrder(new ReverseTravelOrder);
+  scheduler.SetPrinter(new DefaultPrinter);
   EXPECT_TRUE(scheduler.IsValid());
 }
