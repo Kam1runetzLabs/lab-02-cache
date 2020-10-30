@@ -163,6 +163,7 @@ TEST(UseCases, MovingOperator) {
     if (results[i] != movedResults[i]) FAIL();
   SUCCEED();
 }
+
 TEST(UseCases, CreatingSchedulerFromEmpyState) {
   ExperimentsScheduler scheduler;
   EXPECT_FALSE(scheduler.IsValid());

@@ -44,23 +44,23 @@ std::size_t Experiment::RunExperiment() {
   }
   return commonDuration / IterationsCount / (bufferSize / CacheLineSize);
 }
+
 void Experiment::SetTravelOrder(TravelOrder *newOrder) {
   travelOrder = newOrder;
   travelOrder->SetBufferSize(bufferSize);
 }
+
 std::string Experiment::CurrentTravelOrder() const {
-  if (travelOrder) return travelOrder->TravelOrderName();
-  return std::string();
+  return travelOrder ? travelOrder->TravelOrderName() : std::string();
 }
 
 std::size_t Experiment::GetBufferSize() const { return bufferSize; }
 
 Experiment::ExperimentResult::ExperimentResult(std::size_t duration,
                                                std::size_t bufferSize,
-                                               std::string travelOrder)
-    : Duration(duration),
-      BufferSize(bufferSize),
-      TravelOrder(std::move(travelOrder)) {}
+                                               const std::string &travelOrder)
+    : Duration(duration), BufferSize(bufferSize), TravelOrder(travelOrder) {}
+
 bool operator==(const Experiment::ExperimentResult &left,
                 const Experiment::ExperimentResult &right) {
   if (left.BufferSize == right.BufferSize && left.Duration == right.Duration &&
@@ -68,6 +68,7 @@ bool operator==(const Experiment::ExperimentResult &left,
     return true;
   return false;
 }
+
 bool operator!=(const Experiment::ExperimentResult &left,
                 const Experiment::ExperimentResult &right) {
   return !(left == right);

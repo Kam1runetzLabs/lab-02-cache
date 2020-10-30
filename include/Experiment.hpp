@@ -11,7 +11,7 @@ class Experiment {
  public:
   struct ExperimentResult {
     ExperimentResult(std::size_t duration, std::size_t bufferSize,
-                     std::string travelOrder);
+                     const std::string &travelOrder);
     std::size_t Duration;
     std::size_t BufferSize;
     std::string TravelOrder;

@@ -14,7 +14,7 @@ class RandomTravelOrder : public TravelOrder {
   std::size_t GetNextIndex() override;
   void SetDefaultIndex() override;
  private:
-  std::mt19937_64 randomizer;
+  std::mt19937 randomizer;
 };
 
 #endif  // INCLUDE_TRAVELORDERS_RANDOMTRAVELORDER_HPP_

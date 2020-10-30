@@ -14,9 +14,11 @@ std::size_t ReverseTravelOrder::GetNextIndex() {
     currentBufferIndex -= CacheLineSize;
   return tmp;
 }
+
 void ReverseTravelOrder::SetDefaultIndex() {
   currentBufferIndex = bufferSize - 1;
 }
+
 void ReverseTravelOrder::SetBufferSize(std::size_t size) {
   currentBufferIndex = bufferSize - 1;
   bufferSize = size;

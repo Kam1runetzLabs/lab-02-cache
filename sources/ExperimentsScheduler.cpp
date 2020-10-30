@@ -108,12 +108,14 @@ ExperimentsScheduler &ExperimentsScheduler::operator=(
 
   return *this;
 }
+
 ExperimentsScheduler::ExperimentsScheduler()
     : expResults(),
       experiments(),
       buffer(nullptr),
       resultsPrinter(nullptr),
       travelOrder(nullptr) {}
+
 void ExperimentsScheduler::CreateExperiments(
     ExperimentsCreator *experimentsCreator) {
   if (!experimentsCreator)
