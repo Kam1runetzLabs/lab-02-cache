@@ -46,6 +46,9 @@ std::size_t Experiment::RunExperiment() {
 }
 
 void Experiment::SetTravelOrder(TravelOrder *newOrder) {
+  if (!newOrder)
+    throw std::runtime_error(
+        "travel order most be not null, experiment can't start");
   travelOrder = newOrder;
   travelOrder->SetBufferSize(bufferSize);
 }

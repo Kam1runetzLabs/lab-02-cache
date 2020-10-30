@@ -124,6 +124,11 @@ void ExperimentsScheduler::CreateExperiments(
 
   auto bufferSize = experimentsCreator->GetMaxBufferSize();
   buffer = std::make_unique<char[]>(bufferSize);
+
+  std::random_device rd;
+  std::mt19937 randomizer(rd());
+  for (std::size_t i = 0; i < bufferSize; ++i) buffer[i] = randomizer();
+
   experiments = experimentsCreator->CreateExperiments(buffer.get());
   delete experimentsCreator;
 }
