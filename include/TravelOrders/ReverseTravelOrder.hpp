@@ -3,6 +3,10 @@
 #ifndef INCLUDE_TRAVELORDERS_REVERSETRAVELORDER_HPP_
 #define INCLUDE_TRAVELORDERS_REVERSETRAVELORDER_HPP_
 
+/*!
+ * @brief одна из стандартный реализаций интерфеса TravelOrder, реализующая
+ * поведение обратного обхода*/
+
 #include <TravelOrders/TravelOrder.hpp>
 
 class ReverseTravelOrder : public TravelOrder {

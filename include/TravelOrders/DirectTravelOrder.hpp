@@ -3,6 +3,10 @@
 #ifndef INCLUDE_TRAVELORDERS_DIRECTTRAVELORDER_HPP_
 #define INCLUDE_TRAVELORDERS_DIRECTTRAVELORDER_HPP_
 
+/*!
+ * @brief одна из стандартных реализаций интерфейса TravelOrder, реализующая
+ * поведение прямого обхода */
+
 #include <TravelOrders/TravelOrder.hpp>
 
 class DirectTravelOrder : public TravelOrder {
