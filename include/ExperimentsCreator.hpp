@@ -36,18 +36,6 @@ class ExperimentsCreator {
    * @return размер буффера*/
   virtual std::size_t GetMaxBufferSize() const = 0;
 
-  /*!
-   * @example
-   * @code
-   * auto creator = new SomeExperimentsCreator(<args>);
-   * auto bufferSize = creator->GetMaxBufferSize();
-   * buffer = std::make_unique<char[]>(bufferSize);
-   * auto experiments = creator->CreateExperiments(buffer.get());
-   * ... or
-   * auto scheduler = std::make_unique<ExperimentsScheduler>(new
-   * SomeExperimentCreator(<args>);
-   * @endcode*/
-
  protected:
   std::size_t L1CacheSize;
   std::size_t L2CacheSize;
