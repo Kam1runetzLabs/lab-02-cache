@@ -14,7 +14,6 @@
 #include <memory>
 #include <stdexcept>
 
-
 TEST(ErrorHandling, NullCreatorForCoustructor) {
   EXPECT_THROW(ExperimentsScheduler scheduler(nullptr), std::runtime_error);
 }
