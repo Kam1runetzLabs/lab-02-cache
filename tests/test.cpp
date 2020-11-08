@@ -16,7 +16,7 @@
 #include <memory>
 #include <stdexcept>
 
-const std::string CSVResultFileName = "result.csv";
+const auto CSVResultFileName = "result.csv";
 
 TEST(ResultsSaving, CSV) {
   ExperimentsScheduler scheduler(
