@@ -318,4 +318,4 @@ investigation:
     results:
       duration: "76ns"
 ```
-![Cache](./images/graphic_lab02.png)
+![Results](./images/graphic_lab02.png)
