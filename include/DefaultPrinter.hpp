@@ -4,7 +4,8 @@
 #define INCLUDE_DEFAULTPRINTER_HPP_
 
 /*!
- * @brief стандартная реализация интерфейса ResultsPrinter*/
+ * @brief стандартная реализация интерфейса ResultsPrinter, печатает данные в
+ * заданный поток в формате yaml*/
 
 #include <Experiment.hpp>
 #include <ResultsPrinter.hpp>
@@ -12,8 +13,6 @@
 #include <vector>
 
 class DefaultPrinter : public ResultsPrinter {
-  /*! @brief выводит результаты экспериментов в формате, похожем на yaml в поток
-   * out*/
   void Print(const std::vector<Experiment::ExperimentResult> &,
              std::ostream &out) override;
 };
