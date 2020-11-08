@@ -46,9 +46,10 @@ std::string ExperimentsScheduler::CurrentTravelOrder() const {
 void ExperimentsScheduler::RunAllExperiments() {
   for (auto &exp : experiments) {
     exp.WarnUpCache();
-    std::size_t duration = exp.RunExperiment();
-    expResults.emplace_back(duration, exp.GetBufferSize(),
-                            exp.CurrentTravelOrder());
+    auto duration = exp.RunExperiment();
+    auto bufferSize = exp.GetBufferSize();
+    auto curTravelOrder = exp.CurrentTravelOrder();
+    expResults.emplace_back(duration, bufferSize, curTravelOrder);
   }
 }
 
