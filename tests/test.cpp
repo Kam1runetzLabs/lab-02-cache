@@ -2,6 +2,7 @@
 
 #include <gtest/gtest.h>
 
+#include <CSVPrinter.hpp>
 #include <DefaultExperimentsCreator.hpp>
 #include <DefaultPrinter.hpp>
 #include <Experiment.hpp>
@@ -10,9 +11,37 @@
 #include <TravelOrders/RandomTravelOrder.hpp>
 #include <TravelOrders/ReverseTravelOrder.hpp>
 #include <config.hpp>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+
+const std::string CSVResultFileName = "result.csv";
+
+TEST(ResultsSaving, CSV) {
+  ExperimentsScheduler scheduler(
+      new DefaultExperimentsCreator(MyL1dCacheSize, MyL3CacheSize));
+  scheduler.SetPrinter(new CSVPrinter);
+
+  std::ofstream csvResult;
+  csvResult.open(CSVResultFileName, std::ios::out);
+  if (!csvResult.is_open())
+    FAIL() << "Unable to open results file" << std::endl;
+
+  scheduler.SetTravelOrder(new DirectTravelOrder);
+  scheduler.RunAllExperiments();
+  scheduler.Print(csvResult);
+
+  scheduler.SetTravelOrder(new ReverseTravelOrder);
+  scheduler.RunAllExperiments();
+  scheduler.Print(csvResult);
+
+  scheduler.SetTravelOrder(new RandomTravelOrder);
+  scheduler.RunAllExperiments();
+  scheduler.Print(csvResult);
+
+  csvResult.close();
+}
 
 TEST(ErrorHandling, NullCreatorForCoustructor) {
   EXPECT_THROW(ExperimentsScheduler scheduler(nullptr), std::runtime_error);
