@@ -147,56 +147,56 @@ ivnestigation:
     input_data:
       buffer_size: "32Kb"
     results:
-      duration: "35ns"
+      duration: "28ns"
 
   - experiment:
     number: 2
     input_data:
       buffer_size: "64Kb"
     results:
-      duration: "35ns"
+      duration: "26ns"
 
   - experiment:
     number: 3
     input_data:
       buffer_size: "128Kb"
     results:
-      duration: "37ns"
+      duration: "27ns"
 
   - experiment:
     number: 4
     input_data:
       buffer_size: "256Kb"
     results:
-      duration: "30ns"
+      duration: "27ns"
 
   - experiment:
     number: 5
     input_data:
       buffer_size: "512Kb"
     results:
-      duration: "30ns"
+      duration: "27ns"
 
   - experiment:
     number: 6
     input_data:
       buffer_size: "1024Kb"
     results:
-      duration: "30ns"
+      duration: "27ns"
 
   - experiment:
     number: 7
     input_data:
       buffer_size: "2048Kb"
     results:
-      duration: "30ns"
+      duration: "27ns"
 
   - experiment:
     number: 8
     input_data:
       buffer_size: "4608Kb"
     results:
-      duration: "31ns"
+      duration: "28ns"
 
 investigation:
   travel_variant: "reverse"
@@ -214,49 +214,49 @@ investigation:
     input_data:
       buffer_size: "64Kb"
     results:
-      duration: "30ns"
+      duration: "27ns"
 
   - experiment:
     number: 3
     input_data:
       buffer_size: "128Kb"
     results:
-      duration: "30ns"
+      duration: "26ns"
 
   - experiment:
     number: 4
     input_data:
       buffer_size: "256Kb"
     results:
-      duration: "30ns"
+      duration: "27ns"
 
   - experiment:
     number: 5
     input_data:
       buffer_size: "512Kb"
     results:
-      duration: "31ns"
+      duration: "27ns"
 
   - experiment:
     number: 6
     input_data:
       buffer_size: "1024Kb"
     results:
-      duration: "31ns"
+      duration: "27ns"
 
   - experiment:
     number: 7
     input_data:
       buffer_size: "2048Kb"
     results:
-      duration: "31ns"
+      duration: "27ns"
 
   - experiment:
     number: 8
     input_data:
       buffer_size: "4608Kb"
     results:
-      duration: "32ns"
+      duration: "28ns"
 
 investigation:
   travel_variant: "random"
@@ -267,54 +267,55 @@ investigation:
     input_data:
       buffer_size: "32Kb"
     results:
-      duration: "81ns"
+      duration: "74ns"
 
   - experiment:
     number: 2
     input_data:
       buffer_size: "64Kb"
     results:
-      duration: "80ns"
+      duration: "77ns"
 
   - experiment:
     number: 3
     input_data:
       buffer_size: "128Kb"
     results:
-      duration: "80ns"
+      duration: "74ns"
 
   - experiment:
     number: 4
     input_data:
       buffer_size: "256Kb"
     results:
-      duration: "80ns"
+      duration: "75ns"
 
   - experiment:
     number: 5
     input_data:
       buffer_size: "512Kb"
     results:
-      duration: "81ns"
+      duration: "75ns"
 
   - experiment:
     number: 6
     input_data:
       buffer_size: "1024Kb"
     results:
-      duration: "79ns"
+      duration: "75ns"
 
   - experiment:
     number: 7
     input_data:
       buffer_size: "2048Kb"
     results:
-      duration: "80ns"
+      duration: "75ns"
 
   - experiment:
     number: 8
     input_data:
       buffer_size: "4608Kb"
     results:
-      duration: "80ns"
+      duration: "76ns"
 ```
+![Cache](./images/graphic_lab02.png)
