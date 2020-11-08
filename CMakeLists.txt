@@ -46,7 +46,7 @@ add_library(cache STATIC
         sources/DefaultExperimentsCreator.cpp
         include/ResultsPrinter.hpp
         include/DefaultPrinter.hpp
-        sources/DefaultPrinter.cpp)
+        sources/DefaultPrinter.cpp include/CSVPrinter.hpp sources/CSVPrinter.cpp)
 add_executable(tests
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
         )
